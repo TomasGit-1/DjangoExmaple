@@ -3,12 +3,12 @@
 import json
 from authlib.integrations.django_client import OAuth
 from django.conf import settings
-from django.shortcuts import redirect, render, redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from urllib.parse import quote_plus, urlencode
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect ,HttpResponse
 
-
+from .Folderclass.sendEmail import Gmail_API
 oauth = OAuth()
 
 oauth.register(
@@ -29,15 +29,7 @@ def login(request):
 def callback(request):
     token = oauth.auth0.authorize_access_token(request)
     request.session["user"] = token
-    # return render(
-    #         request, 'web/dashboard.html' , context={
-    #         "session": request.session.get("user"),
-    #         "pretty": json.dumps(request.session.get("user"), indent=4),
-    #     })
-    # return HttpResponseRedirect(dashboard)
     return redirect("/dashboard")
-
-
 
 def logout(request):
     request.session.clear()
@@ -52,18 +44,11 @@ def logout(request):
         ),
     )
 
-
 def index(request):
     return render(
         request,
         "web/index.html",
-        context={
-            "session": request.session.get("user"),
-            "pretty": json.dumps(request.session.get("user"), indent=4),
-        },
     )
-
-
 
 def dashboard(request):
     return render(
@@ -71,8 +56,23 @@ def dashboard(request):
         "web/dashboard.html"
     )
 
+def email(request):
+    return render(
+        request,
+        "web/Email.html"
+    )
 
 
+def send_mail_rute(request):
+    try:
+        if request.method == 'POST':
+            data = request.POST.dict()
+            objEmail = Gmail_API()
+            data = {'val1' : 'this is x', 'val2' : True}
+
+            return HttpResponse(json.dumps(data))
+    except  Exception as e:
+        return e
 
 
 # from django.shortcuts import render, redirect

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/navstyle.css' %}" />
+</head>
+<body>
+     <Header>{% include "web/nav.html" %}</Header>
+    <section>
+        <h2>Emails</h2>
+    </section>
+        <div>
+        </div>
+        <form action="sendemail_route/" method="post">
+            {% csrf_token %}
+            <label for="">To :</label>
+            <input type="text" name = "to_mail" >
+            <br>
+            <label for="">Subject :</label>
+            <input type="text" name = "subject_mail" >
+            <br>
+            <label for="">Message</label>
+            <textArea name = "message_mail"></textArea>
+            <input type="submit" value="Ok">
+        </form>
+</body>
+</html>
