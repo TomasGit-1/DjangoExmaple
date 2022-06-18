@@ -68,9 +68,10 @@ def send_mail_rute(request):
         if request.method == 'POST':
             data = request.POST.dict()
             objEmail = Gmail_API()
-            data = {'val1' : 'this is x', 'val2' : True}
-
-            return HttpResponse(json.dumps(data))
+            # objEmail.gmail_create_draft([1,2,3])
+            objEmail.gmail_send_message()
+            results = {'val1' : 'this is x', 'val2' : True}
+            return HttpResponse(json.dumps(results))
     except  Exception as e:
         return e
 

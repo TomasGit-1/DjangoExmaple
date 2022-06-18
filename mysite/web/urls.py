@@ -9,6 +9,6 @@ urlpatterns = [
     path("logout", views.logout, name="logout"),
     path("callback", views.callback, name="callback"),
     path('dashboard/' , views.dashboard , name = 'dashboard'),
-    path('sendemailV/' , views.email , name = 'sendmail'),  
+    path('sendemailV/' , views.email , name = 'sendemailV'),  
     path('mail/' , views.send_mail_rute , name = 'sendmail'),  
 ]
