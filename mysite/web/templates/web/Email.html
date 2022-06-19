@@ -1,31 +1,47 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/navstyle.css' %}" />
-</head>
-<body>
-     <Header>{% include "web/nav.html" %}</Header>
-    <section>
+    <link rel="stylesheet" href="{% static 'css/style_email.css' %}" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous"
+  />
+  </head>
+  <body>
+    <header></header>
+    <nav>{% include "web/nav.html" %}</nav>
+    
+    <section class="body_padre">
+      <div class="card_body">
         <h2>Emails</h2>
-    </section>
-        <div>
-        </div>
-        <form action="sendemail_route/" method="post">
-            {% csrf_token %}
-            <label for="">To :</label>
-            <input type="text" name = "to_mail" >
-            <br>
-            <label for="">Subject :</label>
-            <input type="text" name = "subject_mail" >
-            <br>
-            <label for="">Message</label>
-            <textArea name = "message_mail"></textArea>
-            <input type="submit" value="Ok">
+        <form action="mail/" method="post">
+          {% csrf_token %}
+          <label for="">From :</label><br>
+          <input type="text" name="from_mail" class="input_email" />
+          <br />
+          <label for="">To :</label><br>
+          <input type="text" name="to_mail" class="input_email" />
+          <label for="">Subject :</label><br>
+          <input type="text" name="subject_mail" class="input_email" />
+          <br />
+          <label for="">Message</label><br>
+          <textarea name="message_mail" class="input_email"></textarea><br>
+          <input type="submit" value="Ok" class ="btn_send_email" />
         </form>
-</body>
+      </div>
+    </section>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"
+  ></script>
+  </body>
 </html>

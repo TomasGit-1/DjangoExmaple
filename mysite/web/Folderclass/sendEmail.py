@@ -109,15 +109,18 @@ class Gmail_API:
         except Exception as e:
             return None
 
-    
-    def gmail_send_message(self):
+    def gmail_send_message(self , data_send_mail):
         try:
             service = build('gmail', 'v1', credentials=self.creds)
             message = EmailMessage()
-            message.set_content('This is automated draft mail')
-            message['To'] = 'devtom19@gmail.com'
-            message['From'] = 'tomaslopezperez107@gmail.com'
-            message['Subject'] = 'Automated draft'
+            # message.set_content('This is automated draft mail')
+            # message['To'] = 'devtom19@gmail.com'
+            # message['From'] = 'tomaslopezperez107@gmail.com'
+            # message['Subject'] = 'Automated draft'
+            message.set_content(data_send_mail['message_mail'])
+            message['To'] = data_send_mail['to_mail']
+            message['From'] = data_send_mail['from_mail']
+            message['Subject'] = data_send_mail['subject_mail']
             # encoded message
             encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
             create_message = {

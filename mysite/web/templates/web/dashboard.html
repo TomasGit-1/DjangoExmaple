@@ -6,13 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/navstyle.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_grid_dashboard.css' %}" />
     <!-- <link rel="stylesheet" href="../static/css/navStyle.css"> -->
     <title>Document</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <Header>{% include "web/nav.html" %}</Header>
+    <header></header>
+    {% include "web/nav.html" %}
+
     <section>
-      <h2>Dashboard</h2>
+      <div class="container mt-12" style="margin-top:10px">
+        <div class="row">
+          <div class="col">
+            <div class="card" styele="width : 18rem">
+              <img src="https://miro.medium.com/max/1400/1*-Okc-l56BXQlqXqxXHex0w.jpeg" alt="" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="card-title">Gmail API</h5>
+                <p class="card-text">Send email widt gmail api and python</p>
+                <a href="/sendemailV" class="btn btn-primary">Go</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col">Column 2</div>
+          <div class="col">Column 3</div>
+        </div>
+      </div>
     </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

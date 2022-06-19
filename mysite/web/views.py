@@ -44,6 +44,12 @@ def logout(request):
         ),
     )
 
+def ModuloView(request):
+ 
+ 
+    return 0 
+
+
 def index(request):
     return render(
         request,
@@ -69,9 +75,10 @@ def send_mail_rute(request):
             data = request.POST.dict()
             objEmail = Gmail_API()
             # objEmail.gmail_create_draft([1,2,3])
-            objEmail.gmail_send_message()
+            objEmail.gmail_send_message(data)
             results = {'val1' : 'this is x', 'val2' : True}
-            return HttpResponse(json.dumps(results))
+            # return HttpResponse(json.dumps(results))
+            return redirect('sendemailV/')
     except  Exception as e:
         return e
 
