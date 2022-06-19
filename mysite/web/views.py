@@ -44,11 +44,20 @@ def logout(request):
         ),
     )
 
-def ModuloView(request):
- 
- 
-    return 0 
-
+def ModuloView(request , modulo):
+    try:
+        print("Modulo")
+        if modulo =='email':
+            if request.method == 'POST':
+                data = request.POST.dict()
+                send_mail_rute(data)
+            return render(
+                    request,
+                    "web/Email.html"
+                )
+                
+    except Exception as e:
+        print(str(e))   
 
 def index(request):
     return render(
@@ -62,23 +71,14 @@ def dashboard(request):
         "web/dashboard.html"
     )
 
-def email(request):
-    return render(
-        request,
-        "web/Email.html"
-    )
-
-
-def send_mail_rute(request):
+def send_mail_rute(data):
     try:
-        if request.method == 'POST':
-            data = request.POST.dict()
             objEmail = Gmail_API()
             # objEmail.gmail_create_draft([1,2,3])
             objEmail.gmail_send_message(data)
             results = {'val1' : 'this is x', 'val2' : True}
             # return HttpResponse(json.dumps(results))
-            return redirect('sendemailV/')
+            return redirect('View/email')
     except  Exception as e:
         return e
 
